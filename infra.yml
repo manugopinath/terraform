@@ -1,19 +1,7 @@
 - hosts: all
   sudo: true
-  sudo_user: ubuntu
-  gather_facts: false
-  tasks:
-#    - name: Install Python
-#      apt: python=2.7
-
-    - name: Installs nginx web server
-      apt: 
-        name: nginx 
-     
-      notify:
-        - start nginx
-
-  handlers:
-    - name: start nginx
-      service: name=nginx state=started
-
+  remote_user: ubuntu
+  gather_facts: true
+  roles:
+    - role: nginx
+    - role: docker

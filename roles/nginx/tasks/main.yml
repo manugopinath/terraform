@@ -1,0 +1,12 @@
+ - name: Installs nginx web server
+   apt:
+    update_cache: yes
+    name: nginx
+
+ - name: setup nginx config
+   template: src={{ item.src }} dest={{ item.dest }} mode=0644 owner=root group=root
+   with_items:
+     - { src: 'nginx.conf', dest: '/etc/nginx/nginx.conf' }
+
+   notify:
+      - restart nginx

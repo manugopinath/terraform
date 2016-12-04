@@ -1,13 +1,26 @@
+
+- name: Install Python
+  apt: 
+   update_cache: yes
+   name: python=2.7.5-5ubuntu3
+
+- apt_repository:
+   repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+   state: present
+
 - name: install docker
-     apt:
-        name: docker-engine
+  apt:
+   update_cache: yes  
+   force:  yes
+   name: docker-engine=1.10.0-0~trusty
 
 - name: setup dockerfile config
   template: src={{ item.src }} dest={{ item.dest }} mode=0644 owner=ubuntu group=ubuntu
   with_items:
-   - { src: 'Dockerfile', dst: '/home/ubuntu' }
+   - { src: 'Dockerfile', dest: '/home/ubuntu' }
 
 - command: docker build -t wordpress . 
-   chdir: '/home/ubuntu'
+#  args:
+#  chdir: '/home/ubuntu'
 
-- command: docker run --name wordpress -e WORDPRESS_DB_HOST={{DB_host}}:3306  -e WORDPRESS_DB_USER=mysql -e WORDPRESS_DB_PASSWORD=12345678 -d wordpress
+- command: sudo docker run -p 8080:80 --name wordpress -e WORDPRESS_DB_HOST=tf-20161204110328638058136474.cwc3n0k2jjil.us-west-2.rds.amazonaws.com:3306  -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=12345678 -d wordpress

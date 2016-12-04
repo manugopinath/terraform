@@ -1,2 +1,4 @@
-DB_host : "*"
+DB_host : "tf-20161204150336626667647kjc.cwc3n0k2jjil.us-west-2.rds.amazonaws.com"
 home : "/home/ubuntu"
+db_user : root
+DB_PASSWORD : 12345678
