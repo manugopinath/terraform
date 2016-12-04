@@ -1,2 +1,2 @@
-DB_host : " tf-20161204043943760698128omt.cwc3n0k2jjil.us-west-2.rds.amazonaws.com"
+DB_host : "*"
 home : "/home/ubuntu"
