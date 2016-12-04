@@ -1,6 +1,0 @@
-- hosts: all
-  sudo: true
-  remote_user: ubuntu
-  gather_facts: true
-  roles:
-    - role: docker
