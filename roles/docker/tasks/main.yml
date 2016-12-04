@@ -1,0 +1,13 @@
+- name: install docker
+     apt:
+        name: docker-engine
+
+- name: setup dockerfile config
+  template: src={{ item.src }} dest={{ item.dest }} mode=0644 owner=ubuntu group=ubuntu
+  with_items:
+   - { src: 'Dockerfile', dst: '/home/ubuntu' }
+
+- command: docker build -t wordpress . 
+   chdir: '/home/ubuntu'
+
+- command: docker run --name wordpress -e WORDPRESS_DB_HOST={{DB_host}}:3306  -e WORDPRESS_DB_USER=mysql -e WORDPRESS_DB_PASSWORD=12345678 -d wordpress
