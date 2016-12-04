@@ -1,4 +1,4 @@
-
+#!/bin/bash
 if [ "$#" -ne 4 ]; then
  echo "\nUsage $0 <app> <environment> <num_servers> <server_size>\n"
  echo "eg : $0 wordpress dev 2 m1.small\n"
